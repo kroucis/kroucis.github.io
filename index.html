@@ -5,57 +5,270 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Elm Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: system-ui, -apple-system, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             line-height: 1.6;
-            background: #f8f9fa;
+            min-height: 100vh;
+            background-color: #0a0c10;
+            color: #e1e7f0;
         }
-        .container {
-            background: white;
+
+        .dark-theme {
+            --bg-primary: #0a0c10;
+            --bg-secondary: #1a1e24;
+            --bg-card: #1e2329;
+            --text-primary: #e1e7f0;
+            --text-secondary: #a0a8b8;
+            --accent: #61afef;
+            --accent-hover: #7dcfff;
+            --border: #2e3a47;
+            --button-bg: #61afef;
+            --button-text: #0a0c10;
+            --button-hover: #7dcfff;
+            --contact-bg: #1e2a3a;
+        }
+
+        .app {
+            min-height: 100vh;
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: var(--bg-primary);
         }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #61afef, #c678dd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .bio {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        .projects {
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .projects-grid {
             display: grid;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin: 2rem 0;
         }
-        .project-card {
-            border: 1px solid #e1e4e8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
+
+        /* Update the project card styles */
+.project-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-primary); /* Shows while image loads */
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Add a subtle loading animation */
+.project-image:not([src]) {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.project-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Add a fallback style if images are missing */
+.project-image[src=""] {
+    display: none;
+}
+
+.project-image[src=""] + .project-content {
+    border-top: 1px solid var(--border);
+}
+
         .project-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
         }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tag {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .project-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
         button {
-            background: #0070f3;
-            color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
             font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: 1px solid transparent;
         }
+
         button:hover {
-            background: #0051b3;
+            background-color: var(--button-hover);
+            transform: scale(1.05);
         }
+
         .contact {
             margin-top: 2rem;
-            padding: 1rem;
-            background: #e7f5ff;
-            border-radius: 8px;
+            padding: 2rem;
+            background-color: var(--contact-bg);
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            animation: slideIn 0.3s ease;
+        }
+
+        .contact h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            margin: 0.5rem 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .app {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
         }
     </style>
 </head>

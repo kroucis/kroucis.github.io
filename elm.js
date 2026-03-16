@@ -4378,6 +4378,7 @@ function _Browser_load(url)
 		}
 	}));
 }
+var $elm$core$Basics$False = {$: 'False'};
 var $elm$core$List$cons = _List_cons;
 var $elm$core$Elm$JsArray$foldr = _JsArray_foldr;
 var $elm$core$Array$foldr = F3(
@@ -4458,17 +4459,26 @@ var $elm$core$Set$toList = function (_v0) {
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
-var $elm$core$Basics$False = {$: 'False'};
-var $author$project$Main$initialModel = {
-	bio: 'I\'m a developer who loves creating cool stuff with Elm!',
-	name: 'Your Name',
-	projects: _List_fromArray(
-		[
-			{description: 'My first awesome project', title: 'Project 1', url: 'https://example.com/1'},
-			{description: 'Another thing I built', title: 'Project 2', url: 'https://example.com/2'}
-		]),
-	showContact: false
-};
+var $author$project$Main$projects = _List_fromArray(
+	[
+		{
+		description: 'My first awesome project',
+		imageUrl: 'images/Ch3ssM4tch@1024.png',
+		tags: _List_fromArray(
+			['Elm', 'Frontend']),
+		title: 'Project 1',
+		url: 'https://example.com/1'
+	},
+		{
+		description: 'Another thing I built',
+		imageUrl: '',
+		tags: _List_fromArray(
+			['Design', 'UX']),
+		title: 'Project 2',
+		url: 'https://example.com/2'
+	}
+	]);
+var $author$project$Main$initialModel = {bio: 'I\'m a developer who loves creating cool stuff with Elm!', name: 'Your Name', projects: $author$project$Main$projects, showContact: false};
 var $elm$core$Result$Err = function (a) {
 	return {$: 'Err', a: a};
 };
@@ -5220,6 +5230,7 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $author$project$Main$contactInfo = {email: 'kyle@kyleroucis.com', github: 'https://github.com/kroucis', social: 'N/A'};
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
@@ -5247,11 +5258,20 @@ var $elm$html$Html$section = _VirtualDom_node('section');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$a = _VirtualDom_node('a');
+var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
 var $elm$html$Html$Attributes$href = function (url) {
 	return A2(
 		$elm$html$Html$Attributes$stringProperty,
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
+};
+var $elm$html$Html$img = _VirtualDom_node('img');
+var $elm$html$Html$span = _VirtualDom_node('span');
+var $elm$html$Html$Attributes$src = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'src',
+		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
 var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
 var $author$project$Main$viewProject = function (project) {
@@ -5264,100 +5284,19 @@ var $author$project$Main$viewProject = function (project) {
 		_List_fromArray(
 			[
 				A2(
-				$elm$html$Html$h3,
-				_List_Nil,
+				$elm$html$Html$img,
 				_List_fromArray(
 					[
-						$elm$html$Html$text(project.title)
-					])),
-				A2(
-				$elm$html$Html$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text(project.description)
-					])),
-				A2(
-				$elm$html$Html$a,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$href(project.url),
-						$elm$html$Html$Attributes$target('_blank')
+						$elm$html$Html$Attributes$src(project.imageUrl),
+						$elm$html$Html$Attributes$alt(project.title),
+						$elm$html$Html$Attributes$class('project-image')
 					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('View Project →')
-					]))
-			]));
-};
-var $author$project$Main$view = function (model) {
-	return A2(
-		$elm$html$Html$div,
-		_List_fromArray(
-			[
-				$elm$html$Html$Attributes$class('container')
-			]),
-		_List_fromArray(
-			[
+				_List_Nil),
 				A2(
-				$elm$html$Html$header,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$h1,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$elm$html$Html$text(model.name)
-							])),
-						A2(
-						$elm$html$Html$p,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('bio')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text(model.bio)
-							]))
-					])),
-				A2(
-				$elm$html$Html$section,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$h2,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Projects')
-							])),
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('projects')
-							]),
-						A2($elm$core$List$map, $author$project$Main$viewProject, model.projects))
-					])),
-				A2(
-				$elm$html$Html$button,
-				_List_fromArray(
-					[
-						$elm$html$Html$Events$onClick($author$project$Main$ToggleContact)
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text(
-						model.showContact ? 'Hide Contact' : 'Show Contact')
-					])),
-				model.showContact ? A2(
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('contact')
+						$elm$html$Html$Attributes$class('project-content')
 					]),
 				_List_fromArray(
 					[
@@ -5366,16 +5305,176 @@ var $author$project$Main$view = function (model) {
 						_List_Nil,
 						_List_fromArray(
 							[
-								$elm$html$Html$text('Get in touch!')
+								$elm$html$Html$text(project.title)
 							])),
 						A2(
 						$elm$html$Html$p,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('project-description')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text(project.description)
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('tags')
+							]),
+						A2(
+							$elm$core$List$map,
+							function (tag) {
+								return A2(
+									$elm$html$Html$span,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('tag')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(tag)
+										]));
+							},
+							project.tags)),
+						A2(
+						$elm$html$Html$a,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$href(project.url),
+								$elm$html$Html$Attributes$target('_blank'),
+								$elm$html$Html$Attributes$class('project-link')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('View Project →')
+							]))
+					]))
+			]));
+};
+var $author$project$Main$view = function (model) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('app dark-theme')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('container')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$header,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('header')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h1,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text(model.name)
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('bio')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(model.bio)
+									]))
+							])),
+						A2(
+						$elm$html$Html$section,
 						_List_Nil,
 						_List_fromArray(
 							[
-								$elm$html$Html$text('email: your.email@example.com')
-							]))
-					])) : $elm$html$Html$text('')
+								A2(
+								$elm$html$Html$h2,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Projects')
+									])),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('projects-grid')
+									]),
+								A2($elm$core$List$map, $author$project$Main$viewProject, model.projects))
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('action-buttons')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$button,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('contact-btn'),
+										$elm$html$Html$Events$onClick($author$project$Main$ToggleContact)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(
+										model.showContact ? 'Hide Contact' : 'Show Contact')
+									]))
+							])),
+						model.showContact ? A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('contact')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h3,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Get in touch!')
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Email: ' + $author$project$Main$contactInfo.email)
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text('GitHub: ' + $author$project$Main$contactInfo.github)
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Socials: ' + $author$project$Main$contactInfo.social)
+									]))
+							])) : $elm$html$Html$text('')
+					]))
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$sandbox(
