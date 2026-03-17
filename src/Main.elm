@@ -1,3 +1,7 @@
+-- Copyright © Kyle Roucis 2026
+-- Created with assistance from Claude.ai Sonnet 4.6 (https://claude.ai)
+
+
 module Main exposing (main)
 
 import Browser exposing (Document, UrlRequest(..))

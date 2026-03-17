@@ -1,3 +1,7 @@
+-- Copyright © Kyle Roucis 2026
+-- Created with assistance from Claude.ai Sonnet 4.6 (https://claude.ai)
+
+
 module Me exposing (bio, links, name, photo)
 
 
