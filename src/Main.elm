@@ -32,7 +32,7 @@ type Route
 
 isLocal : Bool
 isLocal =
-    False
+    True
 
 
 siteRoot : String

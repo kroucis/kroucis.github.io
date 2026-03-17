@@ -6354,7 +6354,7 @@ var $author$project$Main$isHome = function (route) {
 	}
 };
 var $elm$html$Html$nav = _VirtualDom_node('nav');
-var $author$project$Main$isLocal = false;
+var $author$project$Main$isLocal = true;
 var $author$project$Main$siteRoot = $author$project$Main$isLocal ? '/' : 'portfolio.kroucis.github.io/';
 var $author$project$Main$toHref = function (route) {
 	switch (route.$) {
