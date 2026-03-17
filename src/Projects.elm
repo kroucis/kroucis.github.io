@@ -11,6 +11,8 @@ type alias Project =
     { slug : String
     , title : String
     , year : String
+    , category : String
+    , platforms : List String
     , image : String
     , summary : String
     , description : String
@@ -23,8 +25,10 @@ type alias Project =
 all : List Project
 all =
     [ { slug = "clockwork"
-      , title = "Clockwork Game Engine - App / Library - iOS (Android pending)"
+      , title = "Clockwork Game Engine"
       , year = "In Development 2026"
+      , category = "App / Library"
+      , platforms = [ "iOS", "macOS", "Android (PENDING)" ]
       , image = Images.clockwork
       , summary = "2D mobile-focused game engine written entirely in Swift."
       , description = "<TODO>"
@@ -35,8 +39,10 @@ all =
             ]
       }
     , { slug = "starcross"
-      , title = "Starcross - Game - iOS (Android pending)"
+      , title = "Starcross"
       , year = "Alpha 2026"
+      , category = "Game"
+      , platforms = [ "iOS", "Android (PENDING)" ]
       , image = Images.starcross
       , summary = "Mobile bullet-hell rogue-like."
       , description = "<TODO>"
@@ -47,8 +53,10 @@ all =
             ]
       }
     , { slug = "pixel-forge"
-      , title = "Pixel Forge - Graphics Tool - macOS"
+      , title = "Pixel Forge"
       , year = "Released 2024"
+      , category = "App"
+      , platforms = [ "macOS" ]
       , image = Images.pixel_forge
       , summary = "Metal-based shader creation tool."
       , description = "<TODO>"
@@ -59,8 +67,10 @@ all =
             ]
       }
     , { slug = "simple-swaps"
-      , title = "Simple Swaps - Game - iOS & Android"
-      , year = "Released 2024"
+      , title = "Simple Swaps"
+      , year = "Released 2023"
+      , category = "Game"
+      , platforms = [ "iOS", "Android" ]
       , image = Images.simple_swaps
       , summary = "Block swapping and pattern matching game focused on engine features and simplicity."
       , description = "<TODO>"
@@ -71,8 +81,10 @@ all =
             ]
       }
     , { slug = "ch3ss-m4tch"
-      , title = "Ch3ss M4tch - Game - macOS & iOS & Android"
+      , title = "Ch3ss M4tch"
       , year = "Released 2023"
+      , category = "Game"
+      , platforms = [ "iOS", "macOS", "Android" ]
       , image = Images.ch3ss_m4tch
       , summary = "Competitive match-3 game based loosely on chess. First Clockwork-based game."
       , description = "<TODO>"
@@ -83,8 +95,10 @@ all =
             ]
       }
     , { slug = "seeds-of-earth"
-      , title = "Seeds of Earth: The Singular Anomaly - Game - Windows & macOS (Unreal Engine 5)"
+      , title = "Seeds of Earth: The Singular Anomaly"
       , year = "In Development 2022"
+      , category = "Game"
+      , platforms = [ "macOS (UE5)", "Windows (UE5)" ]
       , image = Images.seeds_of_earth
       , summary = "2.5D spaceship combat action RPG"
       , description = "<TODO>"

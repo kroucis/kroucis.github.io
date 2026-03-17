@@ -306,7 +306,15 @@ viewProjectCard project =
               else
                 text ""
             ]
-        , div [ class "project-card-meta" ] [ text project.year ]
+        , div [ class "project-card-meta" ]
+            ([ text (project.year ++ " · " ++ project.category) ]
+                ++ (if List.isEmpty project.platforms then
+                        []
+
+                    else
+                        [ text (" · " ++ String.join ", " project.platforms) ]
+                   )
+            )
         , div [ class "project-card-summary" ] [ text project.summary ]
         , div [ class "tags" ] (List.map viewTag project.tags)
         ]
@@ -329,9 +337,14 @@ viewProjectDetail slug =
                 [ a [ class "back", href (toHref Home) ] [ text "← all work" ]
                 , h1 [ class "detail-title" ] [ text project.title ]
                 , div [ class "detail-meta" ]
-                    [ text (project.year ++ " · ")
-                    , span [] (List.intersperse (text ", ") (List.map text project.tags))
-                    ]
+                    ([ text (project.year ++ " · " ++ project.category) ]
+                        ++ (if List.isEmpty project.platforms then
+                                []
+
+                            else
+                                [ text (" · " ++ String.join ", " project.platforms) ]
+                           )
+                    )
                 , if project.image /= "" then
                     img
                         [ class "project-image"

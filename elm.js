@@ -6154,14 +6154,17 @@ var $author$project$Images$starcross = $author$project$Images$imagesRoot + 'Star
 var $author$project$Projects$all = _List_fromArray(
 	[
 		{
+		category: 'App / Library',
 		description: '<TODO>',
 		github: $elm$core$Maybe$Nothing,
 		image: $author$project$Images$clockwork,
+		platforms: _List_fromArray(
+			['iOS', 'macOS', 'Android (PENDING)']),
 		slug: 'clockwork',
 		summary: '2D mobile-focused game engine written entirely in Swift.',
 		tags: _List_fromArray(
 			['iOS', 'macOS', 'Swift', 'Metal', 'Clockwork Game Engine', 'AppKit', 'SwiftUI']),
-		title: 'Clockwork Game Engine - App / Library - iOS (Android pending)',
+		title: 'Clockwork Game Engine',
 		urls: _List_fromArray(
 			[
 				_Utils_Tuple2('Talk on Clockwork', 'https://drive.google.com/file/d/1hqxlNsHsfF_4p6zIAkUBCEOXeRX1hG3t/view')
@@ -6169,14 +6172,17 @@ var $author$project$Projects$all = _List_fromArray(
 		year: 'In Development 2026'
 	},
 		{
+		category: 'Game',
 		description: '<TODO>',
 		github: $elm$core$Maybe$Nothing,
 		image: $author$project$Images$starcross,
+		platforms: _List_fromArray(
+			['iOS', 'Android (PENDING)']),
 		slug: 'starcross',
 		summary: 'Mobile bullet-hell rogue-like.',
 		tags: _List_fromArray(
 			['iOS', 'macOS', 'Swift', 'Clockwork Game Engine', 'App Store']),
-		title: 'Starcross - Game - iOS (Android pending)',
+		title: 'Starcross',
 		urls: _List_fromArray(
 			[
 				_Utils_Tuple2('TestFlight BETA', 'https://testflight.apple.com/join/Kqa2PEJj')
@@ -6184,14 +6190,17 @@ var $author$project$Projects$all = _List_fromArray(
 		year: 'Alpha 2026'
 	},
 		{
+		category: 'App',
 		description: '<TODO>',
 		github: $elm$core$Maybe$Nothing,
 		image: $author$project$Images$pixel_forge,
+		platforms: _List_fromArray(
+			['macOS']),
 		slug: 'pixel-forge',
 		summary: 'Metal-based shader creation tool.',
 		tags: _List_fromArray(
 			['macOS', 'Swift', 'Metal', 'AppKit', 'SwiftUI', 'App Store']),
-		title: 'Pixel Forge - Graphics Tool - macOS',
+		title: 'Pixel Forge',
 		urls: _List_fromArray(
 			[
 				_Utils_Tuple2('App Store', 'https://apps.apple.com/us/app/pixel-forge/id6473090142?mt=12')
@@ -6199,29 +6208,17 @@ var $author$project$Projects$all = _List_fromArray(
 		year: 'Released 2024'
 	},
 		{
+		category: 'Game',
 		description: '<TODO>',
 		github: $elm$core$Maybe$Nothing,
 		image: $author$project$Images$simple_swaps,
+		platforms: _List_fromArray(
+			['iOS', 'Android']),
 		slug: 'simple-swaps',
 		summary: 'Block swapping and pattern matching game focused on engine features and simplicity.',
 		tags: _List_fromArray(
 			['iOS', 'Android', 'Swift', 'Metal', 'Android NDK', 'Kotlin', 'OpenGL', 'Clockwork Game Engine', 'App Store', 'Google Play']),
-		title: 'Simple Swaps - Game - iOS & Android',
-		urls: _List_fromArray(
-			[
-				_Utils_Tuple2('App Store', 'https://apps.apple.com/tr/app/ch3ss-m4tch/id1604265608')
-			]),
-		year: 'Released 2024'
-	},
-		{
-		description: '<TODO>',
-		github: $elm$core$Maybe$Nothing,
-		image: $author$project$Images$ch3ss_m4tch,
-		slug: 'ch3ss-m4tch',
-		summary: 'Competitive match-3 game based loosely on chess. First Clockwork-based game.',
-		tags: _List_fromArray(
-			['iOS', 'Android', 'macOS', 'Swift', 'Metal', 'Android NDK', 'Kotlin', 'OpenGL', 'Clockwork Game Engine', 'App Store', 'Google Play']),
-		title: 'Ch3ss M4tch - Game - macOS & iOS & Android',
+		title: 'Simple Swaps',
 		urls: _List_fromArray(
 			[
 				_Utils_Tuple2('App Store', 'https://apps.apple.com/tr/app/ch3ss-m4tch/id1604265608')
@@ -6229,14 +6226,35 @@ var $author$project$Projects$all = _List_fromArray(
 		year: 'Released 2023'
 	},
 		{
+		category: 'Game',
+		description: '<TODO>',
+		github: $elm$core$Maybe$Nothing,
+		image: $author$project$Images$ch3ss_m4tch,
+		platforms: _List_fromArray(
+			['iOS', 'macOS', 'Android']),
+		slug: 'ch3ss-m4tch',
+		summary: 'Competitive match-3 game based loosely on chess. First Clockwork-based game.',
+		tags: _List_fromArray(
+			['iOS', 'Android', 'macOS', 'Swift', 'Metal', 'Android NDK', 'Kotlin', 'OpenGL', 'Clockwork Game Engine', 'App Store', 'Google Play']),
+		title: 'Ch3ss M4tch',
+		urls: _List_fromArray(
+			[
+				_Utils_Tuple2('App Store', 'https://apps.apple.com/tr/app/ch3ss-m4tch/id1604265608')
+			]),
+		year: 'Released 2023'
+	},
+		{
+		category: 'Game',
 		description: '<TODO>',
 		github: $elm$core$Maybe$Nothing,
 		image: $author$project$Images$seeds_of_earth,
+		platforms: _List_fromArray(
+			['macOS (UE5)', 'Windows (UE5)']),
 		slug: 'seeds-of-earth',
 		summary: '2.5D spaceship combat action RPG',
 		tags: _List_fromArray(
 			['UE4', 'UE5', 'Blueprints', 'UE C++']),
-		title: 'Seeds of Earth: The Singular Anomaly - Game - Windows & macOS (Unreal Engine 5)',
+		title: 'Seeds of Earth: The Singular Anomaly',
 		urls: _List_fromArray(
 			[
 				_Utils_Tuple2('Combat Teaser Trailer', 'https://www.youtube.com/watch?v=o79_4Z6f5vA')
@@ -6775,6 +6793,13 @@ var $author$project$Main$viewHero = function (showPhoto) {
 				A2($elm$core$List$map, $author$project$Main$viewHeroLink, $author$project$Me$links))
 			]));
 };
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
 var $elm$core$Basics$neq = _Utils_notEqual;
 var $author$project$Main$viewTag = function (t) {
 	return A2(
@@ -6834,10 +6859,16 @@ var $author$project$Main$viewProjectCard = function (project) {
 					[
 						$elm$html$Html$Attributes$class('project-card-meta')
 					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text(project.year)
-					])),
+				_Utils_ap(
+					_List_fromArray(
+						[
+							$elm$html$Html$text(project.year + (' · ' + project.category))
+						]),
+					$elm$core$List$isEmpty(project.platforms) ? _List_Nil : _List_fromArray(
+						[
+							$elm$html$Html$text(
+							' · ' + A2($elm$core$String$join, ', ', project.platforms))
+						]))),
 				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
@@ -6942,17 +6973,16 @@ var $author$project$Main$viewProjectDetail = function (slug) {
 						[
 							$elm$html$Html$Attributes$class('detail-meta')
 						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(project.year + ' · '),
-							A2(
-							$elm$html$Html$span,
-							_List_Nil,
-							A2(
-								$elm$core$List$intersperse,
-								$elm$html$Html$text(', '),
-								A2($elm$core$List$map, $elm$html$Html$text, project.tags)))
-						])),
+					_Utils_ap(
+						_List_fromArray(
+							[
+								$elm$html$Html$text(project.year + (' · ' + project.category))
+							]),
+						$elm$core$List$isEmpty(project.platforms) ? _List_Nil : _List_fromArray(
+							[
+								$elm$html$Html$text(
+								' · ' + A2($elm$core$String$join, ', ', project.platforms))
+							]))),
 					(project.image !== '') ? A2(
 					$elm$html$Html$img,
 					_List_fromArray(
