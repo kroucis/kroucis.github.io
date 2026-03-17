@@ -6146,39 +6146,42 @@ var $author$project$Posts$all = _List_fromArray(
 	]);
 var $author$project$Images$imagesRoot = '/images/';
 var $author$project$Images$ch3ss_m4tch = $author$project$Images$imagesRoot + 'Ch3ssM4tch.png';
+var $author$project$Images$clockwork = $author$project$Images$imagesRoot + 'Clockwork.png';
 var $author$project$Images$pixel_forge = $author$project$Images$imagesRoot + 'PixelForge.png';
+var $author$project$Images$seeds_of_earth = $author$project$Images$imagesRoot + 'SeedsOfEarth.png';
 var $author$project$Images$simple_swaps = $author$project$Images$imagesRoot + 'SimpleSwaps.jpg';
+var $author$project$Images$starcross = $author$project$Images$imagesRoot + 'Starcross.jpeg';
 var $author$project$Projects$all = _List_fromArray(
 	[
 		{
 		description: '<TODO>',
 		github: $elm$core$Maybe$Nothing,
-		image: $author$project$Images$ch3ss_m4tch,
-		slug: 'ch3ss-m4tch',
-		summary: 'Competitive match-3 game based loosely on chess. First Clockwork-based game.',
+		image: $author$project$Images$clockwork,
+		slug: 'clockwork',
+		summary: '2D mobile-focused game engine written entirely in Swift.',
 		tags: _List_fromArray(
-			['iOS', 'Android', 'macOS', 'Swift', 'Android NDK', 'Kotlin', 'Clockwork Game Engine', 'App Store', 'Google Play']),
-		title: 'Ch3ss M4tch - Game - macOS & iOS & Android',
+			['iOS', 'macOS', 'Swift', 'Metal', 'Clockwork Game Engine', 'AppKit', 'SwiftUI']),
+		title: 'Clockwork Game Engine - App / Library - iOS (Android pending)',
 		urls: _List_fromArray(
 			[
-				_Utils_Tuple2('App Store', 'https://apps.apple.com/tr/app/ch3ss-m4tch/id1604265608')
+				_Utils_Tuple2('Talk on Clockwork', 'https://drive.google.com/file/d/1hqxlNsHsfF_4p6zIAkUBCEOXeRX1hG3t/view')
 			]),
-		year: 'Released 2023'
+		year: 'In Development 2026'
 	},
 		{
 		description: '<TODO>',
 		github: $elm$core$Maybe$Nothing,
-		image: $author$project$Images$simple_swaps,
-		slug: 'simple-swaps',
-		summary: 'Block swapping and pattern matching game focused on engine features and simplicity.',
+		image: $author$project$Images$starcross,
+		slug: 'starcross',
+		summary: 'Mobile bullet-hell rogue-like.',
 		tags: _List_fromArray(
-			['iOS', 'Android', 'Swift', 'Android NDK', 'Kotlin', 'Clockwork Game Engine', 'App Store', 'Google Play']),
-		title: 'Simple Swaps - Game - iOS & Android',
+			['iOS', 'macOS', 'Swift', 'Clockwork Game Engine', 'App Store']),
+		title: 'Starcross - Game - iOS (Android pending)',
 		urls: _List_fromArray(
 			[
-				_Utils_Tuple2('App Store', 'https://apps.apple.com/tr/app/ch3ss-m4tch/id1604265608')
+				_Utils_Tuple2('TestFlight BETA', 'https://testflight.apple.com/join/Kqa2PEJj')
 			]),
-		year: 'Released 2024'
+		year: 'Alpha 2026'
 	},
 		{
 		description: '<TODO>',
@@ -6194,6 +6197,51 @@ var $author$project$Projects$all = _List_fromArray(
 				_Utils_Tuple2('App Store', 'https://apps.apple.com/us/app/pixel-forge/id6473090142?mt=12')
 			]),
 		year: 'Released 2024'
+	},
+		{
+		description: '<TODO>',
+		github: $elm$core$Maybe$Nothing,
+		image: $author$project$Images$simple_swaps,
+		slug: 'simple-swaps',
+		summary: 'Block swapping and pattern matching game focused on engine features and simplicity.',
+		tags: _List_fromArray(
+			['iOS', 'Android', 'Swift', 'Metal', 'Android NDK', 'Kotlin', 'OpenGL', 'Clockwork Game Engine', 'App Store', 'Google Play']),
+		title: 'Simple Swaps - Game - iOS & Android',
+		urls: _List_fromArray(
+			[
+				_Utils_Tuple2('App Store', 'https://apps.apple.com/tr/app/ch3ss-m4tch/id1604265608')
+			]),
+		year: 'Released 2024'
+	},
+		{
+		description: '<TODO>',
+		github: $elm$core$Maybe$Nothing,
+		image: $author$project$Images$ch3ss_m4tch,
+		slug: 'ch3ss-m4tch',
+		summary: 'Competitive match-3 game based loosely on chess. First Clockwork-based game.',
+		tags: _List_fromArray(
+			['iOS', 'Android', 'macOS', 'Swift', 'Metal', 'Android NDK', 'Kotlin', 'OpenGL', 'Clockwork Game Engine', 'App Store', 'Google Play']),
+		title: 'Ch3ss M4tch - Game - macOS & iOS & Android',
+		urls: _List_fromArray(
+			[
+				_Utils_Tuple2('App Store', 'https://apps.apple.com/tr/app/ch3ss-m4tch/id1604265608')
+			]),
+		year: 'Released 2023'
+	},
+		{
+		description: '<TODO>',
+		github: $elm$core$Maybe$Nothing,
+		image: $author$project$Images$seeds_of_earth,
+		slug: 'seeds-of-earth',
+		summary: '2.5D spaceship combat action RPG',
+		tags: _List_fromArray(
+			['UE4', 'UE5', 'Blueprints', 'UE C++']),
+		title: 'Seeds of Earth: The Singular Anomaly - Game - Windows & macOS (Unreal Engine 5)',
+		urls: _List_fromArray(
+			[
+				_Utils_Tuple2('Combat Teaser Trailer', 'https://www.youtube.com/watch?v=o79_4Z6f5vA')
+			]),
+		year: 'In Development 2022'
 	}
 	]);
 var $elm$core$List$filter = F2(
