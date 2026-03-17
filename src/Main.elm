@@ -279,7 +279,19 @@ viewHeroLink ( label, url ) =
 viewProjectCard : Project -> Html Msg
 viewProjectCard project =
     a [ class "project-card", href (toHref (ProjectDetail project.slug)) ]
-        [ div [ class "project-card-title" ] [ text project.title ]
+        [ div [ class "project-card-header" ]
+            [ div [ class "project-card-title" ] [ text project.title ]
+            , if project.image /= "" then
+                img
+                    [ class "project-card-image"
+                    , src project.image
+                    , alt (project.title ++ " screenshot")
+                    ]
+                    []
+
+              else
+                text ""
+            ]
         , div [ class "project-card-meta" ] [ text project.year ]
         , div [ class "project-card-summary" ] [ text project.summary ]
         , div [ class "tags" ] (List.map viewTag project.tags)

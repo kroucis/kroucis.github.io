@@ -62,11 +62,24 @@
     /* project card */
     .project-card         { display: block; padding: 1.25rem 0; border-top: 1px solid var(--border); color: var(--fg); }
     .project-card:last-child { border-bottom: 1px solid var(--border); }
-    .project-card-title   { font-size: 1.1rem; margin-bottom: 0.35rem; }
+    .project-card-title   { font-size: 1.1rem; }
     .project-card-meta    { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.35rem; }
     .project-card-summary { font-size: 0.9rem; color: var(--muted); }
 
-    /* tags */
+    .project-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-card-image {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
     .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
     .tag  { font-size: 0.7rem; color: var(--muted); border: 1px solid var(--border); padding: 0.1rem 0.45rem; }
 
