@@ -2,10 +2,10 @@ module Main exposing (main)
 
 import Browser exposing (Document, UrlRequest(..))
 import Browser.Navigation as Nav
-import Hero
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
+import Me
 import Posts exposing (Post)
 import Projects exposing (Project)
 import Url exposing (Url)
@@ -130,33 +130,33 @@ pageTitle : Route -> String
 pageTitle route =
     case route of
         Home ->
-            Hero.name
+            Me.name
 
         ProjectDetail slug ->
             Projects.all
                 |> List.filter (\p -> p.slug == slug)
                 |> List.head
-                |> Maybe.map (\p -> p.title ++ " — " ++ Hero.name)
+                |> Maybe.map (\p -> p.title ++ " — " ++ Me.name)
                 |> Maybe.withDefault "Not Found"
 
         BlogList ->
-            "Writing — " ++ Hero.name
+            "Writing — " ++ Me.name
 
         BlogPost slug ->
             Posts.all
                 |> List.filter (\p -> p.slug == slug)
                 |> List.head
-                |> Maybe.map (\p -> p.title ++ " — " ++ Hero.name)
+                |> Maybe.map (\p -> p.title ++ " — " ++ Me.name)
                 |> Maybe.withDefault "Not Found"
 
         NotFound ->
-            "Not Found — " ++ Hero.name
+            "Not Found — " ++ Me.name
 
 
 viewNav : Route -> Html Msg
 viewNav route =
     nav []
-        [ a [ href (toHref Home) ] [ text Hero.name ]
+        [ a [ href (toHref Home) ] [ text Me.name ]
         , div [ class "nav-links" ]
             [ a [ href (toHref Home), classList [ ( "active", isHome route ) ] ] [ text "work" ]
             , a [ href (toHref BlogList), classList [ ( "active", isBlog route ) ] ] [ text "writing" ]
@@ -238,7 +238,7 @@ viewHome showPhoto =
 viewHero : Bool -> Html Msg
 viewHero showPhoto =
     div []
-        [ h1 [ class "hero-name" ] [ text Hero.name ]
+        [ h1 [ class "hero-name" ] [ text Me.name ]
         , button
             [ class "hero-photo-toggle"
             , onClick TogglePhoto
@@ -254,16 +254,16 @@ viewHero showPhoto =
         , if showPhoto then
             img
                 [ class "hero-photo"
-                , src Hero.photo
-                , alt ("Photo of " ++ Hero.name)
+                , src Me.photo
+                , alt ("Photo of " ++ Me.name)
                 ]
                 []
 
           else
             text ""
-        , p [ class "hero-bio" ] [ text Hero.bio ]
+        , p [ class "hero-bio" ] [ text Me.bio ]
         , div [ class "hero-links" ]
-            (List.map viewHeroLink Hero.links)
+            (List.map viewHeroLink Me.links)
         ]
 
 

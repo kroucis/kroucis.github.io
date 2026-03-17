@@ -1,4 +1,4 @@
-module Hero exposing (bio, links, name, photo)
+module Me exposing (bio, links, name, photo)
 
 
 name : String
