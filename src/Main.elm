@@ -1,166 +1,397 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Browser
+import Browser exposing (Document, UrlRequest(..))
+import Browser.Navigation as Nav
+import Hero
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
+import Html.Events exposing (onClick)
+import Posts exposing (Post)
+import Projects exposing (Project)
+import Url exposing (Url)
+import Url.Parser as Parser exposing ((</>), Parser, top)
 
 
 
+-- =====================================================================
+-- ROUTES
+-- =====================================================================
+
+
+type Route
+    = Home
+    | ProjectDetail String
+    | BlogList
+    | BlogPost String
+    | NotFound
+
+
+routeParser : Parser (Route -> a) a
+routeParser =
+    Parser.oneOf
+        [ Parser.map Home top
+        , Parser.map BlogList (Parser.s "blog")
+        , Parser.map BlogPost (Parser.s "blog" </> Parser.string)
+        , Parser.map ProjectDetail (Parser.s "projects" </> Parser.string)
+        ]
+
+
+fromUrl : Url -> Route
+fromUrl url =
+    Parser.parse routeParser url |> Maybe.withDefault NotFound
+
+
+toHref : Route -> String
+toHref route =
+    case route of
+        Home ->
+            "/"
+
+        BlogList ->
+            "/blog"
+
+        BlogPost slug ->
+            "/blog/" ++ slug
+
+        ProjectDetail slug ->
+            "/projects/" ++ slug
+
+        NotFound ->
+            "/"
+
+
+
+-- =====================================================================
+-- DATA
+-- =====================================================================
+-- =====================================================================
 -- MODEL
-
-
-type alias Project =
-    { title : String
-    , description : String
-    , url : String
-    , tags : List String
-    , imageUrl : String
-    }
-
-
-type alias ContactInfo =
-    { email : String
-    , github : String
-    , social : String
-    }
+-- =====================================================================
 
 
 type alias Model =
-    { name : String
-    , bio : String
-    , projects : List Project
-    , showContact : Bool
+    { key : Nav.Key
+    , route : Route
+    , showPhoto : Bool
     }
 
 
-contactInfo : ContactInfo
-contactInfo =
-    { email = "kyle@kyleroucis.com"
-    , github = "https://github.com/kroucis"
-    , social = "N/A"
-    }
-
-
-projects : List Project
-projects =
-    [ { title = "Project 1"
-      , description = "My first awesome project"
-      , url = "https://example.com/1"
-      , tags = [ "Elm", "Frontend" ]
-      , imageUrl = "images/Ch3ssM4tch@1024.png"
-      }
-    , { title = "Project 2"
-      , description = "Another thing I built"
-      , url = "https://example.com/2"
-      , tags = [ "Design", "UX" ]
-      , imageUrl = ""
-      }
-    ]
-
-
-initialModel : Model
-initialModel =
-    { name = "Your Name"
-    , bio = "I'm a developer who loves creating cool stuff with Elm!"
-    , projects = projects
-    , showContact = False
-    }
+init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init _ url key =
+    ( { key = key, route = fromUrl url, showPhoto = False }, Cmd.none )
 
 
 
+-- =====================================================================
 -- UPDATE
+-- =====================================================================
 
 
 type Msg
-    = ToggleContact
-    | NoOp
+    = LinkClicked UrlRequest
+    | UrlChanged Url
+    | TogglePhoto
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        ToggleContact ->
-            { model | showContact = not model.showContact }
+        LinkClicked (Internal url) ->
+            ( model, Nav.pushUrl model.key (Url.toString url) )
 
-        NoOp ->
-            model
+        LinkClicked (External url) ->
+            ( model, Nav.load url )
+
+        UrlChanged url ->
+            ( { model | route = fromUrl url }, Cmd.none )
+
+        TogglePhoto ->
+            ( { model | showPhoto = not model.showPhoto }, Cmd.none )
 
 
 
+-- =====================================================================
 -- VIEW
+-- =====================================================================
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
-    div [ class "app dark-theme" ]
-        -- Always dark theme
-        [ div [ class "container" ]
-            [ header [ class "header" ]
-                [ h1 [] [ text model.name ]
-                , p [ class "bio" ] [ text model.bio ]
-                ]
-            , section []
-                [ h2 [] [ text "Projects" ]
-                , div [ class "projects-grid" ]
-                    (List.map viewProject model.projects)
-                ]
-            , div [ class "action-buttons" ]
-                [ button
-                    [ class "contact-btn"
-                    , onClick ToggleContact
-                    ]
-                    [ text
-                        (if model.showContact then
-                            "Hide Contact"
+    { title = pageTitle model.route
+    , body =
+        [ viewNav model.route
+        , main_ [] [ viewPage model.route model.showPhoto ]
+        , viewFooter
+        ]
+    }
 
-                         else
-                            "Show Contact"
-                        )
-                    ]
-                ]
-            , if model.showContact then
-                div [ class "contact" ]
-                    [ h3 [] [ text "Get in touch!" ]
-                    , p [] [ text ("Email: " ++ contactInfo.email) ]
-                    , p [] [ text ("GitHub: " ++ contactInfo.github) ]
-                    , p [] [ text ("Socials: " ++ contactInfo.social) ]
-                    ]
 
-              else
-                text ""
+pageTitle : Route -> String
+pageTitle route =
+    case route of
+        Home ->
+            Hero.name
+
+        ProjectDetail slug ->
+            Projects.all
+                |> List.filter (\p -> p.slug == slug)
+                |> List.head
+                |> Maybe.map (\p -> p.title ++ " — " ++ Hero.name)
+                |> Maybe.withDefault "Not Found"
+
+        BlogList ->
+            "Writing — " ++ Hero.name
+
+        BlogPost slug ->
+            Posts.all
+                |> List.filter (\p -> p.slug == slug)
+                |> List.head
+                |> Maybe.map (\p -> p.title ++ " — " ++ Hero.name)
+                |> Maybe.withDefault "Not Found"
+
+        NotFound ->
+            "Not Found — " ++ Hero.name
+
+
+viewNav : Route -> Html Msg
+viewNav route =
+    nav []
+        [ a [ href (toHref Home) ] [ text Hero.name ]
+        , div [ class "nav-links" ]
+            [ a [ href (toHref Home), classList [ ( "active", isHome route ) ] ] [ text "work" ]
+            , a [ href (toHref BlogList), classList [ ( "active", isBlog route ) ] ] [ text "writing" ]
             ]
         ]
 
 
-viewProject : Project -> Html Msg
-viewProject project =
-    div [ class "project-card" ]
-        [ img
-            [ src project.imageUrl
-            , alt project.title
-            , class "project-image"
+isHome : Route -> Bool
+isHome route =
+    case route of
+        Home ->
+            True
+
+        ProjectDetail _ ->
+            True
+
+        _ ->
+            False
+
+
+isBlog : Route -> Bool
+isBlog route =
+    case route of
+        BlogList ->
+            True
+
+        BlogPost _ ->
+            True
+
+        _ ->
+            False
+
+
+viewFooter : Html Msg
+viewFooter =
+    footer []
+        [ text "Built with Elm and Claude.ai Sonnet 4.6." ]
+
+
+viewPage : Route -> Bool -> Html Msg
+viewPage route showPhoto =
+    case route of
+        Home ->
+            viewHome showPhoto
+
+        ProjectDetail slug ->
+            viewProjectDetail slug
+
+        BlogList ->
+            viewBlogList
+
+        BlogPost slug ->
+            viewBlogPost slug
+
+        NotFound ->
+            viewNotFound
+
+
+
+-- =====================================================================
+-- HOME
+-- =====================================================================
+
+
+viewHome : Bool -> Html Msg
+viewHome showPhoto =
+    div []
+        [ viewHero showPhoto
+        , h2 [] [ text "Work" ]
+        , div [] (List.map viewProjectCard Projects.all)
+        ]
+
+
+viewHero : Bool -> Html Msg
+viewHero showPhoto =
+    div []
+        [ h1 [ class "hero-name" ] [ text Hero.name ]
+        , button
+            [ class "hero-photo-toggle"
+            , onClick TogglePhoto
             ]
-            []
-        , div [ class "project-content" ]
-            [ h3 [] [ text project.title ]
-            , p [ class "project-description" ] [ text project.description ]
-            , div [ class "tags" ]
-                (List.map (\tag -> span [ class "tag" ] [ text tag ]) project.tags)
-            , a [ href project.url, target "_blank", class "project-link" ]
-                [ text "View Project →" ]
+            [ text
+                (if showPhoto then
+                    "hide photo ↑"
+
+                 else
+                    "show photo ↓"
+                )
             ]
+        , if showPhoto then
+            img
+                [ class "hero-photo"
+                , src Hero.photo
+                , alt ("Photo of " ++ Hero.name)
+                ]
+                []
+
+          else
+            text ""
+        , p [ class "hero-bio" ] [ text Hero.bio ]
+        , div [ class "hero-links" ]
+            (List.map viewHeroLink Hero.links)
+        ]
+
+
+viewHeroLink : ( String, String ) -> Html Msg
+viewHeroLink ( label, url ) =
+    a [ href url, target "_blank", rel "noopener noreferrer" ] [ text label ]
+
+
+viewProjectCard : Project -> Html Msg
+viewProjectCard project =
+    a [ class "project-card", href (toHref (ProjectDetail project.slug)) ]
+        [ div [ class "project-card-title" ] [ text project.title ]
+        , div [ class "project-card-meta" ] [ text project.year ]
+        , div [ class "project-card-summary" ] [ text project.summary ]
+        , div [ class "tags" ] (List.map viewTag project.tags)
         ]
 
 
 
+-- =====================================================================
+-- PROJECT DETAIL
+-- =====================================================================
+
+
+viewProjectDetail : String -> Html Msg
+viewProjectDetail slug =
+    case Projects.all |> List.filter (\p -> p.slug == slug) |> List.head of
+        Nothing ->
+            viewNotFound
+
+        Just project ->
+            div []
+                [ a [ class "back", href (toHref Home) ] [ text "← all work" ]
+                , h1 [ class "detail-title" ] [ text project.title ]
+                , div [ class "detail-meta" ]
+                    [ text (project.year ++ " · ")
+                    , span [] (List.intersperse (text ", ") (List.map text project.tags))
+                    ]
+                , div [ class "prose" ]
+                    [ p [] [ text project.description ] ]
+                , div [ class "tags", style "margin-top" "2rem" ]
+                    (List.filterMap identity
+                        [ project.github |> Maybe.map (\u -> a [ href u, target "_blank", rel "noopener noreferrer" ] [ text "GitHub →" ])
+                        , project.url |> Maybe.map (\u -> a [ href u, target "_blank", rel "noopener noreferrer" ] [ text "Visit →" ])
+                        ]
+                    )
+                ]
+
+
+
+-- =====================================================================
+-- BLOG LIST
+-- =====================================================================
+
+
+viewBlogList : Html Msg
+viewBlogList =
+    div []
+        [ h2 [] [ text "Writing" ]
+        , div []
+            (Posts.all
+                |> List.sortBy .date
+                |> List.reverse
+                |> List.map viewPostRow
+            )
+        ]
+
+
+viewPostRow : Post -> Html Msg
+viewPostRow post =
+    a [ class "post-row", href (toHref (BlogPost post.slug)) ]
+        [ span [ class "post-row-title" ] [ text post.title ]
+        , span [ class "post-row-date" ] [ text post.date ]
+        ]
+
+
+
+-- =====================================================================
+-- BLOG POST
+-- =====================================================================
+
+
+viewBlogPost : String -> Html Msg
+viewBlogPost slug =
+    case Posts.all |> List.filter (\p -> p.slug == slug) |> List.head of
+        Nothing ->
+            viewNotFound
+
+        Just post ->
+            div []
+                [ a [ class "back", href (toHref BlogList) ] [ text "← writing" ]
+                , h1 [ class "detail-title" ] [ text post.title ]
+                , div [ class "detail-meta" ]
+                    [ text (post.date ++ " · ")
+                    , span [] (List.intersperse (text ", ") (List.map text post.tags))
+                    ]
+                , div [ class "prose" ]
+                    [ Html.map never post.body ]
+                ]
+
+
+
+-- =====================================================================
+-- SHARED
+-- =====================================================================
+
+
+viewTag : String -> Html msg
+viewTag t =
+    span [ class "tag" ] [ text t ]
+
+
+viewNotFound : Html Msg
+viewNotFound =
+    div [ class "not-found" ]
+        [ h1 [] [ text "Page not found." ]
+        , a [ href (toHref Home) ] [ text "Go home →" ]
+        ]
+
+
+
+-- =====================================================================
 -- MAIN
+-- =====================================================================
 
 
 main : Program () Model Msg
 main =
-    Browser.sandbox
-        { init = initialModel
+    Browser.application
+        { init = init
         , view = view
         , update = update
+        , subscriptions = \_ -> Sub.none
+        , onUrlChange = UrlChanged
+        , onUrlRequest = LinkClicked
         }

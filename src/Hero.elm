@@ -1,0 +1,33 @@
+module Hero exposing (bio, links, name, photo)
+
+
+name : String
+name =
+    "Kyle Roucis"
+
+
+bio : String
+bio =
+    "Software engineer. Functional programming enthusiast. I build things that are correct by construction."
+
+
+
+-- Path or URL to your photo. Swap this for your actual image file.
+
+
+photo : String
+photo =
+    "images/Me.jpg"
+
+
+
+-- Each link is ( label, url )
+
+
+links : List ( String, String )
+links =
+    [ ( "@kroucis GitHub", "https://github.com/kroucis" )
+
+    --, ( "Socials", "N/A" )
+    , ( "Email", "mailto:kyle@kyleroucis.com" )
+    ]
