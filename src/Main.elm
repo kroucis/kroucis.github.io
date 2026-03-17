@@ -297,6 +297,16 @@ viewProjectDetail slug =
                     [ text (project.year ++ " · ")
                     , span [] (List.intersperse (text ", ") (List.map text project.tags))
                     ]
+                , if project.image /= "" then
+                    img
+                        [ class "project-image"
+                        , src project.image
+                        , alt (project.title ++ " screenshot")
+                        ]
+                        []
+
+                  else
+                    text ""
                 , div [ class "prose" ]
                     [ p [] [ text project.description ] ]
                 , div [ class "tags", style "margin-top" "2rem" ]
