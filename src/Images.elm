@@ -1,7 +1,7 @@
 -- Copyright © Kyle Roucis 2026
 
 
-module Images exposing (ch3ss_m4tch, clockwork, me, pixel_forge, seeds_of_earth, simple_swaps, starcross)
+module Images exposing (ch3ss_m4tch, clockwork, kroucis_vm, me, pixel_forge, seeds_of_earth, simple_swaps, starcross, tradeogre)
 
 
 imagesRoot : String
@@ -17,6 +17,11 @@ ch3ss_m4tch =
 clockwork : String
 clockwork =
     imagesRoot ++ "Clockwork.png"
+
+
+kroucis_vm : String
+kroucis_vm =
+    imagesRoot ++ "Me.jpg"
 
 
 me : String
@@ -42,3 +47,8 @@ simple_swaps =
 starcross : String
 starcross =
     imagesRoot ++ "Starcross.jpeg"
+
+
+tradeogre : String
+tradeogre =
+    imagesRoot ++ "TradeOgre.png"

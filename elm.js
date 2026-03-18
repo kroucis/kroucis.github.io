@@ -6147,10 +6147,12 @@ var $author$project$Posts$all = _List_fromArray(
 var $author$project$Images$imagesRoot = '/images/';
 var $author$project$Images$ch3ss_m4tch = $author$project$Images$imagesRoot + 'Ch3ssM4tch.png';
 var $author$project$Images$clockwork = $author$project$Images$imagesRoot + 'Clockwork.png';
+var $author$project$Images$kroucis_vm = $author$project$Images$imagesRoot + 'Me.jpg';
 var $author$project$Images$pixel_forge = $author$project$Images$imagesRoot + 'PixelForge.png';
 var $author$project$Images$seeds_of_earth = $author$project$Images$imagesRoot + 'SeedsOfEarth.png';
 var $author$project$Images$simple_swaps = $author$project$Images$imagesRoot + 'SimpleSwaps.jpg';
 var $author$project$Images$starcross = $author$project$Images$imagesRoot + 'Starcross.jpeg';
+var $author$project$Images$tradeogre = $author$project$Images$imagesRoot + 'TradeOgre.png';
 var $author$project$Projects$all = _List_fromArray(
 	[
 		{
@@ -6260,6 +6262,42 @@ var $author$project$Projects$all = _List_fromArray(
 				_Utils_Tuple2('Combat Teaser Trailer', 'https://www.youtube.com/watch?v=o79_4Z6f5vA')
 			]),
 		year: 'In Development 2022'
+	},
+		{
+		category: 'App',
+		description: '<TODO>',
+		github: $elm$core$Maybe$Nothing,
+		image: $author$project$Images$tradeogre,
+		platforms: _List_fromArray(
+			['iOS']),
+		slug: 'tradeogre',
+		summary: 'Mobile client for TradeOgre.com',
+		tags: _List_fromArray(
+			['iOS', 'Swift', 'State-Endpoint']),
+		title: 'TrageOgre iOS',
+		urls: _List_fromArray(
+			[
+				_Utils_Tuple2('GitHub', 'https://github.com/kroucis/TradeOgre-iOS')
+			]),
+		year: 'Abandoned 2022'
+	},
+		{
+		category: 'Tool',
+		description: '<TODO>',
+		github: $elm$core$Maybe$Nothing,
+		image: $author$project$Images$kroucis_vm,
+		platforms: _List_fromArray(
+			['macOS']),
+		slug: 'kroucis-vm',
+		summary: 'A bytecode-driven dynamic-dispatched object-oriented so-many-hyphens virtual machine built in C and based on the Objective-C dynamic dispatch object model.',
+		tags: _List_fromArray(
+			['C']),
+		title: 'Kroucis VM',
+		urls: _List_fromArray(
+			[
+				_Utils_Tuple2('GitHub', 'https://github.com/kroucis/KroucisVM')
+			]),
+		year: 'Abandoned 2017'
 	}
 	]);
 var $elm$core$List$filter = F2(

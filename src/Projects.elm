@@ -108,4 +108,32 @@ all =
             [ ( "Combat Teaser Trailer", "https://www.youtube.com/watch?v=o79_4Z6f5vA" )
             ]
       }
+    , { slug = "tradeogre"
+      , title = "TrageOgre iOS"
+      , year = "Abandoned 2022"
+      , category = "App"
+      , platforms = [ "iOS" ]
+      , image = Images.tradeogre
+      , summary = "Mobile client for TradeOgre.com"
+      , description = "<TODO>"
+      , tags = [ "iOS", "Swift", "State-Endpoint" ]
+      , github = Nothing
+      , urls =
+            [ ( "GitHub", "https://github.com/kroucis/TradeOgre-iOS" )
+            ]
+      }
+    , { slug = "kroucis-vm"
+      , title = "Kroucis VM"
+      , year = "Abandoned 2017"
+      , category = "Tool"
+      , platforms = [ "macOS" ]
+      , image = Images.kroucis_vm
+      , summary = "A bytecode-driven dynamic-dispatched object-oriented so-many-hyphens virtual machine built in C and based on the Objective-C dynamic dispatch object model."
+      , description = "<TODO>"
+      , tags = [ "C" ]
+      , github = Nothing
+      , urls =
+            [ ( "GitHub", "https://github.com/kroucis/KroucisVM" )
+            ]
+      }
     ]
